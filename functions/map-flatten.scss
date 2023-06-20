@@ -1,0 +1,35 @@
+@function map-flatten($map, $delimiter: "-", $skip-key: null, $prefix: null) {
+  $flat-map: ();
+
+  @each $key, $value in $map {
+    $skip: ($skip-key != null) and
+      ($skip-key == $key or index($skip-key, $key) != null);
+
+    $flat-key: if(
+      $skip,
+      $prefix,
+      if($prefix, #{$prefix}#{$delimiter}#{$key}, $key)
+    );
+
+    @if type-of($value) == map {
+      $flat-map: map-merge(
+        $flat-map,
+        map-flatten(
+          $value,
+          $prefix: $flat-key,
+          $delimiter: $delimiter,
+          $skip-key: $skip-key
+        )
+      );
+    } @else {
+      $flat-map: map-merge(
+        $flat-map,
+        (
+          $flat-key: $value,
+        )
+      );
+    }
+  }
+
+  @return $flat-map;
+}
