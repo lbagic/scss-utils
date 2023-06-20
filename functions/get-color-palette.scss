@@ -1,0 +1,55 @@
+@function get-color-brightness($color) {
+  @return calc(
+    ((red($color) * 0.299) + (green($color) * 0.587) + (blue($color) * 0.114)) /
+      255 * 100%
+  );
+}
+
+@function get-contrast-color($color, $dark: #000, $light: #ffff) {
+  @if $color == null {
+    @return null;
+  } @else {
+    $color-brightness: get-color-brightness($color);
+    $light-text-brightness: get-color-brightness($light);
+    $dark-text-brightness: get-color-brightness($dark);
+
+    @return if(
+      abs($color-brightness - $light-text-brightness) >
+        abs($color-brightness - $dark-text-brightness),
+      $light,
+      $dark
+    );
+  }
+}
+
+@function get-color-palette($palette, $variants) {
+  $output: ();
+  @each $color-name, $color-value in $palette {
+    $color-map: (
+      "base": $color-value,
+      "base-contrast": get-contrast-color($color-value),
+    );
+    @each $variant-name, $variant-option-map in $variants {
+      $variant-value: scale-color(
+        $color: $color-value,
+        $lightness: map-get($variant-option-map, "lightness") or 0%,
+        $saturation: map-get($variant-option-map, "saturation") or 0%,
+        $alpha: map-get($variant-option-map, "alpha") or 0%,
+      );
+      $color-map: map-merge(
+        $color-map,
+        (
+          "#{$variant-name}": $variant-value,
+          "#{$variant-name}-contrast": get-contrast-color($variant-value),
+        )
+      );
+    }
+    $output: map-merge(
+      $output,
+      (
+        "#{$color-name}": $color-map,
+      )
+    );
+  }
+  @return $output;
+}
