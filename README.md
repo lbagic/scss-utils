@@ -67,7 +67,8 @@ $project-variables: (
 ## get-color-palette
 
 _Type: function  
-Signature: `get-color-palette($colors, $variants)`_
+Signature: `get-color-palette($colors, $variants)`  
+Hint: uses [scale-color](https://sass-lang.com/documentation/modules/color#scale) under the hood for defining variants_
 
 Function for defining color palette with different shades, variants, and respective contrasts.
 
