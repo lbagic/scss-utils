@@ -1,3 +1,5 @@
+@import "../functions/map-flatten.scss";
+
 @mixin generate-css-variables($map, $prefix: null, $skip-key: null) {
   $flat-map: map-flatten($map, $prefix: $prefix, $skip-key: $skip-key);
   @each $key, $value in $flat-map {

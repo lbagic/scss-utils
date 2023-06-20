@@ -1,8 +1,7 @@
 @function get-color-brightness($color) {
-  @return calc(
-    ((red($color) * 0.299) + (green($color) * 0.587) + (blue($color) * 0.114)) /
-      255 * 100%
-  );
+  @return (
+      (red($color) * 0.299) + (green($color) * 0.587) + (blue($color) * 0.114)
+    ) / 255 * 100%;
 }
 
 @function get-contrast-color($color, $dark: #000, $light: #ffff) {
@@ -22,9 +21,9 @@
   }
 }
 
-@function get-color-palette($palette, $variants) {
+@function get-color-palette($colors, $variants) {
   $output: ();
-  @each $color-name, $color-value in $palette {
+  @each $color-name, $color-value in $colors {
     $color-map: (
       "base": $color-value,
       "base-contrast": get-contrast-color($color-value),
