@@ -2,6 +2,12 @@
 
 A collection of scss utils for clean and concise management of project styles and variables.
 
+## Installation
+
+```sh
+npm i @lbagic/scss-utils
+```
+
 **_Overview:_**
 
 | name                                              | type     | description                                                          |

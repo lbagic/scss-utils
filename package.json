@@ -2,7 +2,21 @@
   "name": "@lbagic/scss-utils",
   "version": "1.0.0",
   "description": "Collection of utilities for SCSS",
-  "main": "index.scss",
-  "author": "Luka Bagic",
-  "license": "ISC"
+  "author": "lbagic <luka.bagi@gmail.com>",
+  "license": "ISC",
+  "homepage": "https://github.com/lbagic/scss-utils#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lbagic/scss-utils.git"
+  },
+  "keywords": [
+    "scss",
+    "utils",
+    "get-color-palette",
+    "get-json",
+    "map-deep-get",
+    "map-flatten",
+    "generate-css-variables"
+  ],
+  "main": "index.scss"
 }
