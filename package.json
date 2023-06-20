@@ -2,6 +2,7 @@
   "name": "@lbagic/scss-utils",
   "version": "1.0.0",
   "description": "Collection of utilities for SCSS",
+  "main": "index.scss",
   "author": "Luka Bagic",
   "license": "ISC"
 }
