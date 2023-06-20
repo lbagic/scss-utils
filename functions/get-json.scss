@@ -1,0 +1,69 @@
+@function get-json($value) {
+  @if type-of($value) == map {
+    @return map-get-json($value);
+  } @else if type-of($value) == list {
+    @return list-get-json($value);
+  } @else if
+    type-of($value) ==
+    bool or
+    (type-of($value) == number and unitless($value))
+  {
+    @return #{$value};
+  } @else {
+    @return '"#{$value}"';
+  }
+}
+
+@function list-get-json($list) {
+  $length: length($list);
+
+  $json: "[";
+
+  @if ($length > 0) {
+    @for $i from 1 through $length {
+      $value: nth($list, $i);
+      $value: get-json($value);
+
+      // add the value
+      $json: "#{$json}#{$value}";
+
+      @if $i < $length {
+        $json: "#{$json},";
+      }
+    }
+  }
+
+  $json: "#{$json}]";
+
+  @return $json;
+}
+
+@function map-get-json($map) {
+  $mapKeys: map-keys($map);
+  $length: length($mapKeys);
+
+  $json: "{";
+
+  @if ($length > 0) {
+    @for $i from 1 through $length {
+      //get the key and value
+      $key: nth($mapKeys, $i);
+      $value: map-get($map, $key);
+
+      // quote the key and add it
+      $json: '#{$json}"#{$key}":';
+      $value: get-json($value);
+
+      // add the value to the map
+      $json: "#{$json}#{$value}";
+
+      @if $i < $length {
+        $json: "#{$json},";
+      }
+    }
+  }
+
+  $json: "#{$json}}";
+
+  @return $json;
+}
