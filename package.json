@@ -16,7 +16,8 @@
     "get-json",
     "map-deep-get",
     "map-flatten",
-    "generate-css-variables"
+    "generate-css-variables",
+    "normalize styles"
   ],
-  "main": "index.scss"
+  "main": "src/index.scss"
 }
