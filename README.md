@@ -17,6 +17,7 @@ npm i @lbagic/scss-utils
 | [get-json](#get-json)                             | function | create json from scss structures for convenient export to javascript |
 | [map-deep-get](#map-deep-get)                     | function | util for accessing (deep) map keys                                   |
 | [map-flatten](#map-flatten)                       | function | util for flattening nested scss maps                                 |
+| [normalize](#normalize)                           | styles   | useful noramlized styles                                             |
 
 ---
 
@@ -232,3 +233,12 @@ $flat: map-flatten($project-variables);
 //   "breakpoint-m": 768px;
 // );
 ```
+
+---
+
+## normalize
+
+_Type: styles
+Hint: experimental_
+
+Basic normalized styles.
