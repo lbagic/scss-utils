@@ -1,6 +1,8 @@
+tldr. dont use this, just use tailwind
+
 # Scss utils
 
-A collection of scss utils for clean and concise management of project styles and variables.
+A collection of scss utils for management of project styles and variables.
 
 ## Installation
 
